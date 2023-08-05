@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { api } from "../../service/api"
 import TagInput from "../../components/TagInput"
+import { Link } from "react-router-dom"
 
 
 export default function AddFood(){
@@ -64,7 +65,9 @@ function handleChangeCategory(e) {
         <Container>
             <form>
             <Header perfil={'admin'}/>
-            <h1 id="name"><a href=""> &lt; Voltar</a> </h1>
+            <h1 id="name">
+                <Link to="/">&lt; Voltar</Link> 
+            </h1>
             <h1 id='add'>Adicionar Prato</h1>
             <div id='main'>
                 <div id="info">

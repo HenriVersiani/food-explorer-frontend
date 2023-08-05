@@ -6,12 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 export function ShowButton({ idPrato,perfil }){
 
-    const navigate = useNavigate();
-
-function handlePrato(idPrato){
-    navigate(`/edit/${idPrato}`);
-}
-
     if(perfil === 'user'){
         return(
             <ContainerShowButton>
@@ -26,7 +20,14 @@ function handlePrato(idPrato){
     }
 }
 
-export function ShowIcon({ perfil }){
+export function ShowIcon({ perfil, idPrato }){
+
+    const navigate = useNavigate();
+
+    function handlePrato(){
+        navigate(`/admin/${idPrato}`);
+    }
+
     if(perfil === 'user'){
         return(
             <ContainerIcon>
@@ -36,19 +37,20 @@ export function ShowIcon({ perfil }){
     }else if (perfil === 'admin'){
         return(
             <ContainerIcon>
-             <AiOutlineEdit/>
+             <AiOutlineEdit onClick={handlePrato}/>
              </ContainerIcon>
         )
     }
 }
 
-export default function Food({idPrato,title,description,priçe,perfil,icon:Icon}){
+export default function Food({idPrato,title,description,priçe,perfil,icon:Icon}){ 
+
     return(
         <Container>
             <div id="card">
                 <div id="foto">
                     <FoodImg/>
-                    <ShowIcon perfil={perfil}/>
+                    <ShowIcon perfil={perfil} idPrato={idPrato}/>
                 </div>
                 <div id="info">
                     <h2>

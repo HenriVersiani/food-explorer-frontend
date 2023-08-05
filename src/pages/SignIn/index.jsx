@@ -7,6 +7,7 @@ import { useState } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 export default function SignIn(){
   
   const [name, setName] = useState("");
@@ -21,7 +22,7 @@ export default function SignIn(){
   
     await api.post("/users/create", {name, email, password})
     .then(() => {    
-      toast.success("Usuario cadastrado!")
+      toast.success("Usuário cadastrado!")
       cleanFields()
     })
     .catch((error) => {
@@ -46,7 +47,7 @@ export default function SignIn(){
           <Input type="text" placeholder={"Email"} value={email} onChange={e => setEmail(e.target.value)}/>
           <Input type="password" placeholder={"Senha"} value={password} onChange={e => setPassword(e.target.value)}/>
           <Button onClick={handleSignIn} title="Criar Conta"  />
-          <a href="/login"> Ja tenho uma conta </a>
+          <a href="/login"> Já tenho uma conta </a>
         </div>
       </div>
     </Form>

@@ -13,11 +13,9 @@ export function AppRoutes(){
         <Routes>
             <Route path="/" element={<Menu/>}/>
             <Route path="/user" element={<DetailsUser/>}/>
-            <Route path="/admin" element={<DetailsAdmin/>}/>
+            <Route path="/admin/:id" element={<DetailsAdmin/>}/>
             <Route path="/edit/:id" element={<EditFood/>}/>
             <Route path="/add" element={<AddFood/>}/> 
-            <Route path="/login" element={<LogIn/>}/> 
-            <Route path="/signIn" element={<SignIn/>}/> 
         </Routes>
     )
 }

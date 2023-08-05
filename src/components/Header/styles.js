@@ -49,6 +49,10 @@ a{
     text-decoration:none;
 }
 
+#logout{
+     color: white;
+}
+
 `;
 
 

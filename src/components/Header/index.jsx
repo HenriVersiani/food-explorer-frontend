@@ -1,3 +1,4 @@
+import { useAuth } from "../../hooks/auth"
 import Button from "../Button"
 import IconLink from "../IconLink"
 import Input from "../Input"
@@ -25,7 +26,8 @@ export function ShowButton({perfil}){
      }
 }
 
-export default function Header({ perfil, title }){
+export default function Header({ perfil, title }){ 
+
 
     return(
     <Container>
@@ -36,9 +38,9 @@ export default function Header({ perfil, title }){
             <ShowButton title={title} perfil={perfil}/>
             </main>
             <div id='image'>
-            <Link className="image" to="/login">
+            <a id="logout" href="/">
                 <IconLink icon={IoMdExit} />
-            </Link>
+            </a>
             </div>
         </div> 
     </Container>

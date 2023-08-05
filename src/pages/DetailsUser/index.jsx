@@ -28,7 +28,7 @@ export default function DetailsUser(){
                         <li>Azeitona</li>
                     </ul>
                     <div id="include">
-                        <Button title='Editar Prato'/>
+                        <Button title='Incluir'/>
                     </div>
                 </div>
             </div>

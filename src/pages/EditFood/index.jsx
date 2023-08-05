@@ -4,12 +4,15 @@ import Button from "../../components/Button"
 import Input from "../../components/Input"
 import {BsBoxArrowInUp} from 'react-icons/bs'
 import { Tag } from "../../components/Tag"
+import { Link } from "react-router-dom"
 
 export default function EditFood(){
     return(
         <Container>
             <Header perfil={'admin'} />
-            <h1 id="name"><a href=""> &lt; Voltar</a> </h1>
+            <h1 id="name">
+                <Link to="/">&lt; Voltar</Link>               
+            </h1>
             <h1 id='add'>Editar Prato</h1>
             <div id='main'>
                 <div id="info">
