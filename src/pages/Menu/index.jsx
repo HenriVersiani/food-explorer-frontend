@@ -50,12 +50,7 @@ export default function Menu({props}){
     }).catch(error => {  
         toast.warning('Internal Error');         
         console.log(error);
-    })
-    
-
-
-    const deserts = await api.get(`/food/foods/2`)
-    const drinks = await api.get(`/food/foods/3`)    
+    })      
 
   }
 
@@ -81,6 +76,7 @@ export default function Menu({props}){
             priçe={lunch.value}
             description={lunch.description}
             idPrato={lunch.id}
+            avatar={lunch.avatar}
             />
           )
         })
@@ -100,6 +96,7 @@ export default function Menu({props}){
             priçe={lunch.value}
             description={lunch.description}
             idPrato={lunch.id}
+            avatar={lunch.avatar}
             />
           )
         })
@@ -118,6 +115,7 @@ export default function Menu({props}){
             priçe={lunch.value}
             description={lunch.description}
             idPrato={lunch.id}
+            avatar={lunch.avatar}
             />
           )
         })

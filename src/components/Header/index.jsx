@@ -12,7 +12,7 @@ export function ShowButton({perfil}){
     if(perfil === 'user'){
         return(
             <>
-            <Link to="/add">
+            <Link to="/">
             <Button title='Pedidos'/>
             </Link>
             </>
