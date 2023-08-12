@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { api } from "../../service/api"
 import TagInput from "../../components/TagInput"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 export default function AddFood(){
@@ -23,6 +23,10 @@ const [tags, setTags] = useState([]);
 const [newTag, setNewTag] = useState("");
 
 
+const [imageFoodFile, setImageFoodFile] = useState(null)
+
+const navigate = useNavigate();
+
 function handleAddTag(){
     setTags(prevState => [...prevState, newTag]);
     setNewTag("")
@@ -33,8 +37,8 @@ function handleRemoveTag(e, tag){
    
     const index = tags.indexOf(tag)
     console.log(index)
-    if (index > -1) { // only splice array when item is found
-        tags.splice(index, 1); // 2nd parameter means remove one item only
+    if (index > -1) { 
+        tags.splice(index, 1);
         setTags([...tags]);
     }
 
@@ -43,17 +47,37 @@ function handleRemoveTag(e, tag){
 
 async function handleSubmit(){
 
-if(!plateName || !price || !description || !idCategory || !tags){
+    if(!plateName || !price || !description || !idCategory || !tags){
         return toast.warn("Preencha todos os campos!")
     }
     
    await api.post("/food", {plateName, price, description, idUser, idCategory, tags})
-   .then(() => {
-    toast.success("Prato cadastrado!")
+   .then((response) => {
+        // depois que um prato é cadastrado, eu atualizo com a imagem do prato
+        if(imageFoodFile){
+
+            const fileUploadForm = new FormData()
+            fileUploadForm.append("avatar", imageFoodFile)
+
+            api.patch(`/food/avatar/${response.data.lastID}`, fileUploadForm).then(() => {
+                
+            })
+
+        }
+        toast.success("Prato cadastrado com sucesso!")        
+         
+        return navigate("/")     
+
+
    })
    .catch((error) => {
     console.log(error)
    })
+}
+
+function handleAddImage(event){
+    const file = event.target.files[0]
+    setImageFoodFile(file)   
 }
 
 function handleChangeCategory(e) {   
@@ -72,6 +96,9 @@ function handleChangeCategory(e) {
             <div id='main'>
                 <div id="info">
                     <div id="first">
+                        <input type="file" id="foodImage" onChange={handleAddImage}>
+                            
+                        </input>
                         <label> Imagem do Prato 
                             <p id='input1'>
                                 <BsBoxArrowInUp/>

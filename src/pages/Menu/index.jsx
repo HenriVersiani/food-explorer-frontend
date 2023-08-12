@@ -18,47 +18,25 @@ export default function Menu({props}){
   const [deserts, setDeserts] = useState([])
   const [drinks, setDrinks] = useState([])
 
-  async function getFoodsTypes(){  
-
-    await api.get('/food/foods/1')
-    .then((response) => {           
-
-      setLunchs(response.data); 
-
-    }).catch(error => {  
-        toast.warning('Internal Error');         
-        console.log(error);
-    })
-
-
-    await api.get('/food/foods/2')
-    .then((response) => {           
-
-      setDeserts(response.data); 
-
-    }).catch(error => {  
-        toast.warning('Internal Error');         
-        console.log(error);
-    })
-
-
-    await api.get('/food/foods/3')
-    .then((response) => {           
-
-      setDrinks(response.data); 
-
-    }).catch(error => {  
-        toast.warning('Internal Error');         
-        console.log(error);
-    })      
-
+  async function getFoodsTypes() {
+    try {
+      const responseLunchs = await api.get('/food/foods/1');
+      setLunchs(responseLunchs.data);
+  
+      const responseDeserts = await api.get('/food/foods/2');
+      setDeserts(responseDeserts.data);
+  
+      const responseDrinks = await api.get('/food/foods/3');
+      setDrinks(responseDrinks.data);
+    } catch (error) {
+      toast.warning('Internal Error');
+      console.log(error);
+    }
   }
-
+  
   useEffect(() => {
-    
-    getFoodsTypes()
-
-   }, []);
+    getFoodsTypes();
+  }, []);
 
   return(
   <Container>
