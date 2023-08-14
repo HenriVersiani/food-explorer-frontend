@@ -56,24 +56,31 @@ export default function EditFood(){
 
     async function handleSubmit(){
 
+        console.log(plateName)
+
         if(!plateName || !price || !description || !idCategory || !tags){
             return toast.warn("Preencha todos os campos!")
         }
+
+        if(!idPrato){
+            return toast.warn("Nenhum prato selecionado para alterar")
+        }
         
-    await api.post("/food", {plateName, price, description, idUser, idCategory, tags})
-    .then((response) => {
+        
+         await api.put(`/food/update/${idPrato}`, {plateName, price, description, idUser, idCategory, tags})
+        .then((response) => {
             // depois que um prato é cadastrado, eu atualizo com a imagem do prato
             if(imageFoodFile){
 
                 const fileUploadForm = new FormData()
                 fileUploadForm.append("avatar", imageFoodFile)
 
-                api.patch(`/food/avatar/${response.data.lastID}`, fileUploadForm).then(() => {
+                api.patch(`/food/avatar/${idPrato}`, fileUploadForm).then(() => {
                     
                 })
 
             }
-            toast.success("Prato cadastrado com sucesso!")        
+            toast.success("Prato alterado com sucesso!")        
             
             return navigate("/")     
 
@@ -96,13 +103,21 @@ export default function EditFood(){
     async function getFoodDetails(){  
 
         const response = await api.get(`/food/detail/${idPrato}`)
-        setPlate(response.data.lunch)
+        setPlate(response.data.lunch)    
+
+        setPlateName(response.data.lunch.name)
+        setPrice(response.data.lunch.value)
+        setDescription(response.data.lunch.description)
+        setIdCategory(response.data.lunch.id_category)
+
         setPlateTags(response.data.lunchTags)
+
+        if (response.data.lunchTags) {
+            const tagsArray = response.data.lunchTags.map(tag => tag.name);
+            setTags(tagsArray);
+        }
         
-        response.data.lunchTags.map((t) => {
-            tags.push(t)
-        })        
-          
+    
     }
 
     useEffect(() => {
@@ -119,31 +134,30 @@ export default function EditFood(){
             <h1 id="name">
                 <Link to="/">&lt; Voltar</Link> 
             </h1>
-            <h1 id='add'>Adicionar Prato</h1>
+            <h1 id='add'>Alterar Prato</h1>
             <div id='main'>
                 <div id="info">
                     <div id="first">
-                        <input type="file" id="foodImage" onChange={handleAddImage}>
-                            
-                        </input>
-                        <label> Imagem do Prato 
+
+                         <label> Imagem do Prato 
                             <p id='input1'>
                                 <BsBoxArrowInUp/>
+                                <input type="file" id="foodImage" onChange={handleAddImage} />
                                 Selecione Imagem
                             </p>
-                        </label>  
+                        </label>    
                        
                         <Input 
                             id="plateName"
                             type="text"
                             placeholder='Ex: Salada Ceasar' 
                             label='Nome'
-                            value={plate.name}
+                            value={plateName}
                             onChange={e => setPlateName(e.target.value)}
                         />
 
                         <label id='input3'> Categoria
-                            <select name="" onChange={handleChangeCategory} value={plate.id_category}>
+                            <select name="" onChange={handleChangeCategory}  value={idCategory}>
                                 <option value="1">
                                     Refeiçao 
                                 </option>
@@ -177,8 +191,8 @@ export default function EditFood(){
                             id="price"
                             type="text"
                             placeholder='R$ 00,00' 
-                            label='Preço'
-                            value={plate.value}
+                            label='Preço'                          
+                            value={price}
                             onChange={e => setPrice(e.target.value)}    
                         />
                     </div>
@@ -189,8 +203,8 @@ export default function EditFood(){
                         id='text' 
                         rows="5" 
                         cols="10" 
-                        maxlength="500"
-                        value={plate.description}
+                        maxlength="500"                       
+                        value={description}
                         onChange={e => setDescription(e.target.value)}
                     ></textarea>
                         </label>

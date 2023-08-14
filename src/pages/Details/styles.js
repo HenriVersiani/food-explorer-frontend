@@ -3,6 +3,7 @@ import foodImage from "../../assets/image1.png"
 export const Container = styled.div`
 
 
+
 a{
     color:white;
     text-decoration:none;
@@ -21,11 +22,21 @@ a{
     font-size:30px;
 }
 
+#delete{
+    background-color:gray;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    width:400px;
+    gap:5px;
+}
+
 
 #include{
     display:flex;
     gap:20px;
     margin-top:70px;
+    width:400px;
 }
 
 ul{

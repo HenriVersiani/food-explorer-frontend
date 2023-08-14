@@ -7,6 +7,9 @@ import { useEffect, useState } from "react";
 import { api } from "../../service/api";
 import { FoodAvatarImage } from "../../components/FoodAvatarImage";
 import { useAuth } from "../../hooks/auth";
+import { BsFillTrashFill } from "react-icons/bs"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function ShowButton({ idPrato,perfil,price }){
 
@@ -15,16 +18,50 @@ export function ShowButton({ idPrato,perfil,price }){
     function handleEditPrato(){
         navigate(`/edit/${idPrato}`);
     }
+    
+    function voltar(){
+        navigate("/");
+    }
+
 
     if(perfil === 'user'){
         return(
-            <Button title={`Incluir - R$${price}`}/>
+            <Button title={`Incluir - R$${price}`} onClick={voltar}/>
         )
     }
 
     if(perfil === 'admin'){
         return(
             <Button title='Editar Prato' onClick={handleEditPrato}/>
+        )
+    }
+}
+
+export function ShowButtonDelete({ idPrato,perfil }){
+
+    const navigate = useNavigate();
+
+    async function handleDeletePrato(){
+
+        console.log(idPrato)
+
+        await api.delete(`/food/delete/${idPrato}`)
+        .then((response) => {
+   
+             toast.success("Prato removido com sucesso!")        
+              
+             return navigate("/")
+     
+        })
+        .catch((error) => {
+         console.log(error)
+        })
+       
+    }
+
+    if(perfil === 'admin'){
+        return(
+            <Button id="delete" title='Remover Prato' icon={BsFillTrashFill} onClick={handleDeletePrato}/>
         )
     }
 }
@@ -96,7 +133,10 @@ export default function Details(){
                     </ul>
                     <div id="include">
                         
-                        <ShowButton idPrato={idPrato} perfil={user.perfil} price={plate.value}/>
+                        <ShowButton idPrato={idPrato} perfil={user.perfil} price={plate.value} />
+
+                        <ShowButtonDelete idPrato={idPrato} perfil={user.perfil} />
+                        
 
                     </div>
                 </div>

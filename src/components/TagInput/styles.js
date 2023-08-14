@@ -16,7 +16,7 @@ margin-left:2px;
 input{
     font-size:15px;
     padding:5px;
-    width:100px;
+    width:90px !important;
     border-radius:5px;
     border: 1px dotted gray;
     color:white;

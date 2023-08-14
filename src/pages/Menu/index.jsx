@@ -41,7 +41,7 @@ export default function Menu({props}){
   return(
   <Container>
     <main>
-      <Header perfil={user.perfil}/>
+      <Header perfil={user.perfil} setLunchs={setLunchs} setDeserts={setDeserts} setDrinks={setDrinks}/>
       <FoodImg/>
       <h1 id="title">Refeições</h1>
       <div id="refeicoes">  

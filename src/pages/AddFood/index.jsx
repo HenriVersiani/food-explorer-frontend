@@ -95,13 +95,13 @@ function handleChangeCategory(e) {
             <h1 id='add'>Adicionar Prato</h1>
             <div id='main'>
                 <div id="info">
-                    <div id="first">
-                        <input type="file" id="foodImage" onChange={handleAddImage}>
+                    <div id="first">                        
                             
-                        </input>
+                        
                         <label> Imagem do Prato 
                             <p id='input1'>
                                 <BsBoxArrowInUp/>
+                                <input type="file" id="foodImage" onChange={handleAddImage} />
                                 Selecione Imagem
                             </p>
                         </label>  

@@ -47,7 +47,7 @@ export default function SignIn(){
           <Input type="text" placeholder={"Email"} value={email} onChange={e => setEmail(e.target.value)}/>
           <Input type="password" placeholder={"Senha"} value={password} onChange={e => setPassword(e.target.value)}/>
           <Button onClick={handleSignIn} title="Criar Conta"  />
-          <a href="/login"> Já tenho uma conta </a>
+          <a href="/"> Já tenho uma conta </a>
         </div>
       </div>
     </Form>

@@ -62,7 +62,7 @@ export default function Food({idPrato,title,description,priçe,perfil,avatar,ico
                 </div>
                 <div id="info">
                     <h2>
-                        {title}  &gt;
+                        {title}
                     </h2>
                     <p>{description}</p>
                     <h2>R$ {priçe}</h2>

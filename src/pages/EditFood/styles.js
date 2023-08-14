@@ -4,6 +4,10 @@ import theme from "../../styles/theme";
 
 export const Container = styled.div`
 
+#foodImage{
+    display:none;
+}
+
 #input1{
     height:50px;
     display:flex;
