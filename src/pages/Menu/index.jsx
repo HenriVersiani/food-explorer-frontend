@@ -81,7 +81,7 @@ export default function Menu({props}){
       } 
 
       </div> 
-      <h1 id="title">Sucos</h1>
+      <h1 id="title">Bebidas</h1>
       <div id="sucos">
       
       {
