@@ -2,7 +2,7 @@ import { Container } from "./styles"
 
 export function FoodAvatarImageMenu({ imageURL }){
 
-    const baseUrl = "http://localhost:5051/files/"
+    const baseUrl = "https://food-explorer-backend-ppwk.onrender.com/files/"
 
     return(
 
