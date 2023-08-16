@@ -4,6 +4,7 @@ import Input from "../../components/Input"
 import { Container } from "./styles"
 import { useAuth } from "../../hooks/auth"
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 export default function LogIn(){
   
@@ -25,7 +26,8 @@ const [password, setPassword] = useState("")
           <Input type="text" placeholder={"Email"} onChange={e => setEmail(e.target.value)}/>
           <Input type="password" placeholder={"Senha"} onChange={e => setPassword(e.target.value)} />
           <Button title="Entrar" onClick={handleSignIn}/>
-          <a href="/signin"> Cria uma Conta </a>
+          <Link to="/signin"> <a> Cria uma Conta </a> </Link>
+          
         </div>
       </div>
     </Container>
