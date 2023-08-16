@@ -24,7 +24,7 @@ console.log('user:', user)
                 pauseOnHover
                 theme="dark"
             />
-           {user?.id ? <AppRoutes/> : <AuthRoutes/>} 
+           {user ? <AppRoutes/> : <AuthRoutes/>} 
         </BrowserRouter>
     )
 }
