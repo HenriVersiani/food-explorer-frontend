@@ -5,7 +5,7 @@ import Input from "../../components/Input"
 import {BsBoxArrowInUp, BsPlusLg} from 'react-icons/bs'
 import { Tag } from "../../components/Tag"
 import { useState } from "react"
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { api } from "../../service/api"
 import TagInput from "../../components/TagInput"
@@ -18,7 +18,7 @@ const [plateName, setPlateName] = useState("");
 const [price, setPrice] = useState("");
 const [description, setDescription] = useState("");
 const [idCategory, setIdCategory] = useState("");
-const [idUser, setIdUser] = useState(1);
+const [idUser] = useState(1);
 const [tags, setTags] = useState([]);
 const [newTag, setNewTag] = useState("");
 
@@ -160,7 +160,7 @@ function handleChangeCategory(e) {
                         id='text' 
                         rows="5" 
                         cols="10" 
-                        maxlength="500"
+                        maxLength="500"
                         onChange={e => setDescription(e.target.value)}
                     ></textarea>
                         </label>

@@ -4,7 +4,7 @@ import  Button  from "../../components/Button"
 import  Logo  from "../../components/Logo"
 import Input from "../../components/Input"
 import { useState } from "react"
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
